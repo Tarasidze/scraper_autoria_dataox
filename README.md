@@ -1,8 +1,42 @@
 # Python Application for scraping Autoria.com
 https://auto.ria.com/uk/car/used/
 
-- [Run Application](##rocket-run-application)
-- [Configure Application](##computer_configure-application)
+- [Installation](#Installation)
+
+
+## Installation
+
+1. **Clone the repository:**
+
+   ```
+   git clone https://github.com/Tarasidze/theatre-api-service
+   ```
+2. **Create environment:**
+   ```
+   python -m venv venv
+   ```
+      and activate it:
+   - on windows
+        ```shell
+        venv\Scripts\activate 
+        ```
+   - on macOS or Linux:
+        ```bash
+        source venv/bin/activate 
+        ```
+   ```
+3. **Raname  .env-EXAMPLE to .env file and define your password:**
+   ```
+    POSTGRES_DB="db_autoria"
+    POSTGRES_USER="postgres"
+    POSTGRES_PASSWORD="best pass"
+    POSTGRES_HOST="db_auto"
+    POSTGRES_PORT="5432"
+   ```
+4. **Run command:**
+   ```
+   docker-compose up --build
+   ```
 
 
 
