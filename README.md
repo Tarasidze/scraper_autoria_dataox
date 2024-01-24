@@ -2,6 +2,7 @@
 https://auto.ria.com/uk/car/used/
 
 - [Installation](#Installation)
+- [To-do](#To-do)
 
 
 ## Installation
@@ -37,6 +38,13 @@ https://auto.ria.com/uk/car/used/
    ```
    docker-compose up --build
    ```
+
+## To-do
+
+- add checking database
+- fix docker-compose (some trouble in container network)
+- add more logging
+    
 
 
 
