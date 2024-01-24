@@ -2,7 +2,7 @@ import datetime
 
 from typing_extensions import Annotated
 
-from sqlalchemy import func
+from sqlalchemy import func, BigInteger, Identity
 from sqlalchemy.orm import Mapped
 from sqlalchemy.orm import mapped_column
 
@@ -28,14 +28,17 @@ class Car(MyBase):
 
     __tablename__ = "car"
 
+    id: Mapped[int] = mapped_column(BigInteger, Identity(), primary_key=True)
     url: Mapped[str] = mapped_column(nullable=False)
     title: Mapped[str] = mapped_column(nullable=False)
     price_usd: Mapped[int] = mapped_column(nullable=False)
-    odometer: Mapped[int] = mapped_column(nullable=False)
+    odometer: Mapped[int] = mapped_column(BigInteger, nullable=False)
     username: Mapped[str] = mapped_column(nullable=False)
-    phone_number: Mapped[int] = mapped_column(nullable=False)
+    phone_number: Mapped[int] = mapped_column(BigInteger, nullable=False)
     image_url: Mapped[str] = mapped_column(nullable=False)
-    images_count: Mapped[int]
-    car_number: Mapped[str]
-    car_vin: Mapped[str]
-    datetime_found: Mapped[timestamp] = mapped_column(server_default=func.UTC_TIMESTAMP())
+    images_count: Mapped[int] = mapped_column(nullable=True)
+    car_number: Mapped[str] = mapped_column(nullable=True)
+    car_vin: Mapped[str] = mapped_column(nullable=True)
+    datetime_found: Mapped[timestamp] = mapped_column(
+        server_default=func.current_timestamp()
+    )
