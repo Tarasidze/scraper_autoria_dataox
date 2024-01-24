@@ -27,9 +27,11 @@ if __name__ == '__main__':
     db_manager = CarDbManager()
 
     logging.info(
-        f"Time: {datetime.datetime.now()}, instances of scraper and database manager created."
+        f"Time: {datetime.datetime.now()}, "
+        f"instances of scraper and database manager created."
     )
-    schedule.every(5).minutes.do(scraper.scrap_all_pages)
+
+    schedule.every().day.at("12:00").do(scraper.scrap_all_pages)
     schedule.every().day.at("00:00").do(db_manager.dump_database_to_file)
 
     while True:
