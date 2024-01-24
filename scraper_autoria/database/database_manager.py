@@ -7,6 +7,7 @@ import subprocess
 
 from scraper_autoria.database.data_base_init import SessionLocal
 from scraper_autoria.database.models.car import Car
+from scraper_autoria.services.loger import logging
 
 from dotenv import load_dotenv
 
@@ -45,10 +46,15 @@ class CarDbManager:
                 ],
                 stdout=subprocess.PIPE
             )
-            output = process.communicate()[0]
+
             if process.returncode != 0:
-                print('Command failed. Return code : {}'.format(process.returncode))
+                logging.info(f"Time: {datetime.datetime.now()},"
+                             f" database dumped"
+                             f"{process.communicate()[0]}"
+                             )
                 exit(1)
+
         except Exception as e:
-            print(e)
+            logging.info(f"Time: {datetime.datetime.now()},"
+                         f" Dump database error{e}.")
             exit(1)
