@@ -178,7 +178,7 @@ class Scraper:
 
         page_parameters = {"page": 0}
 
-        for page_number in range(2):
+        for page_number in range(number_of_pages):
             logging.info(f"Time: {datetime.datetime.now()}, scrapping started.")
 
             page_parameters["page"] = page_number
@@ -204,4 +204,4 @@ class Scraper:
                 )
 
         logging.info(f"Time: {datetime.datetime.now()}, scraper ends his job.")
-
+  
