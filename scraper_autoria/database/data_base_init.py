@@ -19,5 +19,6 @@ URL_DATABASE = f"postgresql://{pg_user}:{pg_pass}@{pg_host}:{pg_port}/{pg_db_nam
 
 engine = create_engine(URL_DATABASE)
 SessionLocal = sessionmaker(bind=engine)
+
 Base = declarative_base()
-session = SessionLocal()
+session_local = SessionLocal()
