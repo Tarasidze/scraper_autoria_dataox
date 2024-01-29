@@ -5,6 +5,8 @@ import os
 import datetime
 import subprocess
 
+from sqlalchemy import text
+
 from scraper_autoria.database.data_base_init import SessionLocal
 from scraper_autoria.database.models.car import Car
 from scraper_autoria.services.loger import logging
@@ -16,11 +18,13 @@ load_dotenv()
 
 
 class CarDbManager:
+
     @staticmethod
-    def save_car_to_database(cat_data_: Car, session_: SessionLocal) -> None:
+    def save_car_to_database(cat_data_: Car) -> None:
         """Save car to database."""
-        session_.add(cat_data_)
-        session_.commit()
+        with SessionLocal() as session:
+            session.add(cat_data_)
+            session.commit()
 
     @staticmethod
     def dump_database_to_file() -> None:
@@ -48,13 +52,29 @@ class CarDbManager:
             )
 
             if process.returncode != 0:
-                logging.info(f"Time: {datetime.datetime.now()},"
-                             f" database dumped"
-                             f"{process.communicate()[0]}"
-                             )
+                logging.info(
+                    f"Time: {datetime.datetime.now()},"
+                    f" database dumped"
+                    f"{process.communicate()[0]}"
+                )
                 exit(1)
 
         except Exception as e:
-            logging.info(f"Time: {datetime.datetime.now()},"
-                         f" Dump database error{e}.")
+            logging.info(
+                f"Time: {datetime.datetime.now()},"
+                f" Dump database error{e}."
+            )
             exit(1)
+
+    @staticmethod
+    def check_database_connection(session_: SessionLocal) -> bool:
+        """Simple checking database connection."""
+        try:
+            session_.execute(text("SELECT 1"))
+            return True
+        except Exception as e:
+            logging.info(
+                f"Time: {datetime.datetime.now()},"
+                f" database connection error: {e}"
+            )
+            return False
