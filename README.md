@@ -10,7 +10,7 @@ https://auto.ria.com/uk/car/used/
 1. **Clone the repository:**
 
    ```
-   git clone https://github.com/Tarasidze/theatre-api-service
+   git clone https://github.com/Tarasidze/scraper_autoria_dataox
    ```
 2. **Create environment:**
    ```
