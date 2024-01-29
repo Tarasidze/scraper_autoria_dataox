@@ -146,7 +146,10 @@ class Scraper:
                 )
             price = int(re.sub(r"\D", "", price_obj.text))
         except (NoSuchElementException, Exception) as e:
-            # logging.info(f"Time: {datetime.datetime.now()}, Error No Price: {e}. , {driver_.current_url}")
+            # logging.info(
+            #     f"Time: {datetime.datetime.now()},"
+            #     f" Error No Price: {e}. , {driver_.current_url}"
+            # )
             return 0
 
         return price
@@ -164,7 +167,10 @@ class Scraper:
                     By.CSS_SELECTOR, scraper_config.CSS_SELECTOR_USERNAME_2
                 ).text
             except NoSuchElementException:
-                # logging.info(f"Time: {datetime.datetime.now()}, Error No Name {e}. , {driver_.current_url}")
+                # logging.info(
+                #     f"Time: {datetime.datetime.now()},"
+                #     f" Error No Name {e}. , {driver_.current_url}"
+                # )
                 return "невідомо"
 
         return username
@@ -178,7 +184,10 @@ class Scraper:
             ).text
             odometer = int(re.sub(r"\D", "", odometer))
         except (NoSuchElementException, Exception) as e:
-            # logging.info(f"Time: {datetime.datetime.now()}, Error No oddometer {e}. , {driver_.current_url}")
+            # logging.info(
+            #     f"Time: {datetime.datetime.now()},"
+            #     f" Error No oddometer {e}. , {driver_.current_url}"
+            # )
             return 0
 
         return odometer * 1000
@@ -191,7 +200,10 @@ class Scraper:
                     By.XPATH, scraper_config.XPATH_CAR_IMG_COUNT
                 ).text.split()[-1]
         except (NoSuchElementException, Exception) as e:
-            # logging.info(f"Time: {datetime.datetime.now()}, Error No images {e}. , {driver_.current_url}")
+            # logging.info(
+            #     f"Time: {datetime.datetime.now()},"
+            #     f" Error No images {e}. , {driver_.current_url}"
+            # )
             return 0
 
         return int(images_count)
